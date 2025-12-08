@@ -1,0 +1,63 @@
+#!..\..\.VENVS\hugFace\Scripts\python.exe
+from transformers import AutoImageProcessor, ResNetForImageClassification
+import torch
+from torchvision.models import resnet50, ResNet50_Weights
+from torchvision import datasets
+from torchvision import transforms
+from tqdm import tqdm
+import numpy as np
+import os
+
+
+
+class HugTransform(object):
+	def __init__(self, processor):
+		self.processor = processor
+
+	def __call__(self, image):
+		return self.processor(image,return_tensors="pt")
+		
+
+if __name__ == '__main__':
+	device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+	
+	#image_processor = AutoImageProcessor.from_pretrained("microsoft/resnet-50")
+	image_processor = AutoImageProcessor.from_pretrained("microsoft/resnet-34")
+	#image_processor = AutoImageProcessor.from_pretrained("microsoft/resnet-18")
+	transform = HugTransform(image_processor)
+
+
+	#resnet = ResNetForImageClassification.from_pretrained("microsoft/resnet-50")
+	resnet = ResNetForImageClassification.from_pretrained("microsoft/resnet-34")
+	#resnet = ResNetForImageClassification.from_pretrained("microsoft/resnet-18")
+	resnet.eval()
+
+	batch_size = 64
+
+	testset = datasets.ImageNet(root=r'..\..\Datasets\IMNET1K', split="val", transform=transform)
+	testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=16)
+
+
+	resnet.to(device)
+	correct = 0.0
+	totalSamples = 0
+
+	fullOuts = torch.empty(0)
+	fullLabels = torch.empty(0)
+	with torch.no_grad():
+		loop = tqdm(testloader)
+		for i, data in enumerate(loop):
+			images, labels = torch.squeeze(data[0]["pixel_values"]).to(device), data[1].to("cpu")
+			fullLabels = torch.cat((fullLabels,labels)).to("cpu")
+			# calculate outputs by running images through the network
+			outputs = resnet(images).logits
+			# the class with the highest energy is what we choose as prediction
+			loop.set_description(f"Evaluation on Test Set")
+			fullOuts = torch.cat((fullOuts,outputs.to("cpu")),dim=0).to("cpu")
+
+		outs = fullOuts.to("cpu").numpy()
+		labels = fullLabels.to("cpu").numpy()
+		#np.save(r"..\Results\ResNet_H_50_IMNET1k.npy",outs)
+		np.save(r"..\Results\ResNet_H_34_IMNET1k.npy",outs)
+		#np.save(r"..\Results\ResNet_H_18_IMNET1k.npy",outs)
+		#np.save(r"..\Results\IMNET1kLABELS.npy",labels)
