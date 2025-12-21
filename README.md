@@ -1,82 +1,83 @@
-# Decoding Vision Transformer Variations for Image Classification <small> - A Guide to Performance and Usability</small>
+# Decoding Vision Transformer Variations for Image Classification
 
+![Architecture Overview](images/diagram.png)
 
+**João Montrezol, Hugo S. Oliveira, Hélder P. Oliveira**  
+*— Comprehensive Benchmark and Analysis of Vision Transformer Architectures*  
 
+---
 
+## 📖 Overview
 
-## Abstract
-With the introduction of transformers, the Vision Transformer (ViT) architecture has become one of the leading approaches for image classification. This rapid expansion has produced a wide range of architectural variations, making systematic analysis essential to understand their behaviour, performance, and usability.
+This repository accompanies the study **“Decoding Vision Transformer Variations for Image Classification”**, which provides a systematic analysis of the rapidly expanding ecosystem of **Vision Transformer (ViT)** architectures.
 
-This work reviews, analyses, and benchmarks ViT variants using a clear taxonomy, comparing pure transformer models, hybrid CNN–ViT architectures, and traditional CNNs. The comparison highlights key trade-offs between accuracy, computational complexity, and design choices, providing insights that help researchers identify the most suitable architecture for their specific tasks.
+Since their introduction, ViTs have emerged as a powerful alternative to convolutional neural networks (CNNs). However, the diversity of architectural variants—ranging from pure transformers to hybrid CNN–ViT models—has made it increasingly difficult to understand their relative strengths, limitations, and practical usability.
+
+This work addresses that gap by offering a **structured taxonomy, benchmarking framework, and comparative analysis** of ViT-based models across multiple dimensions.
+
+---
+
+## ✨ Key Contributions
+
+- **Comprehensive Taxonomy of ViT Architectures**  
+  A clear categorisation of pure transformer models, hybrid CNN–ViT architectures, and traditional CNN baselines.
+
+- **Systematic Benchmarking Study**  
+  Extensive empirical comparison focusing on accuracy, computational complexity, and architectural trade-offs.
+
+- **Performance vs. Usability Analysis**  
+  Highlights how design choices impact training stability, inference cost, and deployment feasibility.
+
+- **Practical Guidelines for Model Selection**  
+  Provides actionable insights to help researchers and practitioners select architectures best suited to their tasks and constraints.
+
+---
+
+## 🧠 Method Overview
+
+The proposed analysis framework evaluates a broad spectrum of image classification models by:
+
+- Benchmarking **pure ViT architectures**  
+- Analysing **hybrid CNN–Transformer designs**  
+- Comparing against **traditional CNN baselines**  
+
+All models are evaluated under consistent training and evaluation protocols, enabling fair comparisons across architectural paradigms. The study focuses on understanding how **model complexity, attention mechanisms, and convolutional inductive biases** influence performance and efficiency.
+
+---
+
+## 📊 Results & Architectural Insights
+
+The benchmarking results reveal clear trade-offs between:
+
+- Classification performance  
+- Computational cost (parameters, FLOPs)  
+- Architectural complexity and scalability  
+
+These findings provide deeper insight into when and why specific ViT variants outperform others, particularly in resource-constrained or data-limited settings.
+
+---
 
 ## 🔑 Keywords
-- Visual Transformers  
-- Transformer  
-- Complexity
 
+- Vision Transformers  
+- Transformer Architectures  
+- Image Classification  
+- Computational Complexity  
 
+---
 
+## 🛠 Usage & Dependencies
 
-## 🖼 Model Relation Diagram
+Install the required Python dependencies using:
 
-![Diagram](images/diagram.png)
-
-
-## 🛠 Usage / Dependencies
-
-The project requires the following Python packages:
-
+```bash
 pip install -r requirements.txt
-
-```text
-certifi==2022.12.7
-charset-normalizer==2.1.1
-colorama==0.4.6
-contourpy==1.2.0
-cycler==0.12.1
-einops==0.7.0
-filelock==3.9.0
-fonttools==4.47.0
-fsspec==2023.4.0
-graphviz==0.20.1
-idna==3.4
-Jinja2==3.1.2
-kiwisolver==1.4.5
-MarkupSafe==2.1.3
-matplotlib==3.8.2
-mpmath==1.3.0
-networkx==3.0
-numpy==1.24.1
-opencv-python==4.9.0.80
-packaging==23.2
-Pillow==9.3.0
-pydicom==2.4.4
-pyparsing==3.1.1
-python-dateutil==2.8.2
-requests==2.28.1
-six==1.16.0
-sympy==1.12
-torch==2.1.2+cu118
-torchaudio==2.1.2+cu118
-torchvision==0.16.2+cu118
-torchviz==0.0.2
-tqdm==4.66.1
-typing_extensions==4.4.0
-urllib3==1.26.13
-```
 
 
 ## 📦 Model Weights & Checkpoints
 
-All pre-trained weights and checkpoints for the models presented in the benchmark tables are available for download. These include CNNs, Transformers, and Hybrid CNN–ViT models. Use them to reproduce experiments or fine-tune on your datasets.
+All pre-trained weights and checkpoints for the evaluated models—including **CNNs, pure ViTs, and hybrid CNN–ViT architectures**—are publicly available.
 
 - **Download all weights:** [Google Drive Folder](https://drive.google.com/drive/folders/1rJ8rSHNXU3y4IqndCBFuM8-JCU-Bo4we?usp=sharing)  
-  This folder contains organized subfolders for each model type with respective pre-trained checkpoints and configuration files.
 
-
-
-## Authors
-**João Montrezol**  
-**Hugo S. Oliveira**  
-**Hélder P. Oliveira**
----
+The folder is **organised by model type** and includes configuration files to ensure full **experimental reproducibility**.
