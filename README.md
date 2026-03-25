@@ -3,7 +3,8 @@
 ![Architecture Overview](images/diagram.png)
 
 **João Montrezol, Hugo S. Oliveira, Hélder P. Oliveira**  
-*— Comprehensive Benchmark and Analysis of Vision Transformer Architectures*  
+*Machine Learning with Applications, Volume 23, March 2026, 100844*  
+📄 DOI: 10.1016/j.mlwa.2026.100844
 
 ---
 
